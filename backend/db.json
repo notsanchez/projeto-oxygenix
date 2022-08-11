@@ -1,0 +1,72 @@
+{
+    "users": [
+        {
+            "id": "notsanchez",
+            "password": 123,
+            "name": "Matheus Sanchez",
+            "picture": "https://i.pinimg.com/originals/0e/17/0d/0e170d544b6c1f4de93563b2d77a5dad.gif",
+            "background": "",
+            "age": 18,
+            "description": "JSX Developer",
+            "about": "Amante de JavaScript, Python e React, me interessei por front-end no início de 2019 e desde então venho desenvolvendo projetos para melhorar o uso dessa tecnologia. Estou sempre procurando novas ferramentas para desenvolver meu conhecimento. Atualmente estou estudando React Native e TypeScript para projetos escalaveis. Estou sempre buscando aprender coisas novas.",
+            "github": "https://i.pinimg.com/originals/0e/17/0d/0e170d544b6c1f4de93563b2d77a5dad.gif",
+            "projects": [
+                {
+                    "id": "Pokedex",
+                    "description": "Projeto completo",
+                    "url": ""
+                }
+            ],
+            "experience": [
+                {
+                    "id": "x-Company",
+                    "description": ""
+                }
+            ],
+            "socials": [
+                {
+                    "id": "GitHub",
+                    "url": ""
+                },
+                {
+                    "id": "LinkedIn",
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "id": "notsanchez2",
+            "password": 123,
+            "name": "Matheus Sanchez",
+            "picture": "https://i.pinimg.com/originals/0e/17/0d/0e170d544b6c1f4de93563b2d77a5dad.gif",
+            "background": "",
+            "age": 18,
+            "description": "JSX Developer",
+            "about": "Amante de JavaScript, Python e React, me interessei por front-end no início de 2019 e desde então venho desenvolvendo projetos para melhorar o uso dessa tecnologia. Estou sempre procurando novas ferramentas para desenvolver meu conhecimento. Atualmente estou estudando React Native e TypeScript para projetos escalaveis. Estou sempre buscando aprender coisas novas.",
+            "github": "https://i.pinimg.com/originals/0e/17/0d/0e170d544b6c1f4de93563b2d77a5dad.gif",
+            "projects": [
+                {
+                    "id": "Pokedex Vite",
+                    "description": "Projeto completo",
+                    "url": ""
+                }
+            ],
+            "experience": [
+                {
+                    "id": "x-Company",
+                    "description": ""
+                }
+            ],
+            "socials": [
+                {
+                    "id": "GitHub",
+                    "url": ""
+                },
+                {
+                    "id": "LinkedIn",
+                    "url": ""
+                }
+            ]
+        }
+    ]
+}
