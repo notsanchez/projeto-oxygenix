@@ -14,6 +14,7 @@ const LoginAccountComponent = () => {
         if(res.data.password == pass){
           setError(false)
           localStorage.setItem("token", res.data.id)
+          window.location.replace("/");
         }
       }).catch(() => {
         setError(true)

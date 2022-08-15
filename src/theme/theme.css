@@ -11,6 +11,10 @@ body{
     overflow-x: hidden;
 }
 
+textarea{
+    resize: none;
+}
+
 html, body{
     scroll-behavior: smooth;
 }
