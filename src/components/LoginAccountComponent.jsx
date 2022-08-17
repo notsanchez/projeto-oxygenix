@@ -37,7 +37,7 @@ const LoginAccountComponent = () => {
         <input 
           onChange={(e) => setUser(e.target.value)} 
           type="text" 
-          placeholder='Oxygenix.tk/seunome' 
+          placeholder='Oxygenix.cf/seunome' 
           className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold'   
         />
         <input 

@@ -53,7 +53,7 @@ const CreateAccountComponent = () => {
           </div>
 
           <div className='flex flex-col gap-4 items-start'>
-              <input value={userId} onChange={(e) => setUserId(e.target.value)} type="text" placeholder='Oxygenix.tk/seunome' className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
+              <input value={userId} onChange={(e) => setUserId(e.target.value)} type="text" placeholder='Oxygenix.cf/seunome' className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
               <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Seu nome' className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
               <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder='sua senha' className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
           </div>
