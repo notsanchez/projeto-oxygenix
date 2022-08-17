@@ -48,7 +48,7 @@ const ProfileComponent = () => {
                 age: age,
                 description: description
             }).then(() => {
-            window.location.reload()
+                window.location.replace("/");
             })
     }
 
@@ -61,7 +61,7 @@ const ProfileComponent = () => {
             axios.patch("https://oxygenix-api.herokuapp.com/users/" + token, {
                 picture: res.data.secure_url
             }).then(() => {
-                window.location.reload()
+                window.location.replace("/");
             })
         })
     }
@@ -75,7 +75,7 @@ const ProfileComponent = () => {
             axios.patch("https://oxygenix-api.herokuapp.com/users/" + token, {
                 background: res.data.secure_url
             }).then(() => {
-                window.location.reload()
+                window.location.replace("/");
             })
         })
     }
