@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className='bg-primary w-screen h-screen'>
+      <div className='bg-black w-screen h-screen'>
         <Routes>
           {token == null ? (
               <>

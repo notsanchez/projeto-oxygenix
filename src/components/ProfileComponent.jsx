@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import About from './About'
 import Experience from './Experience'
 import Projects from './Projects'
-import { BsGithub } from "react-icons/bs";
+import { BsGithub, BsBehance } from "react-icons/bs";
 import Social from './Social';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import FileBase64 from 'react-file-base64';
-
 
 const ProfileComponent = () => {
 
@@ -19,7 +17,6 @@ const ProfileComponent = () => {
     const [ data, setData ] = useState('')
     const [ name, setName ] = useState('')
     const [ age, setAge ] = useState('')
-    const [ image, setImage ] = useState('')
     const [ description, setDescription ] = useState('')
     
 
@@ -39,6 +36,12 @@ const ProfileComponent = () => {
         localStorage.clear()
     }
 
+    const inputFile = useRef(null)
+
+    const onButtonClick = () => {
+       inputFile.current.click();
+    };
+
     const handleProfileChanges = () => {
         axios.patch('http://localhost:3001/users/' + token, {
                 name : name,
@@ -48,6 +51,36 @@ const ProfileComponent = () => {
             window.location.reload()
             })
     }
+
+    const uploadImage = (files) => {
+        const formData = new FormData()
+        formData.append("file", files[0])
+        formData.append("upload_preset", "omwg8vby")
+
+        axios.post("https://api.cloudinary.com/v1_1/matheussanchez/image/upload", formData).then((res) => {
+            axios.patch("http://localhost:3001/users/" + token, {
+                picture: res.data.secure_url
+            }).then(() => {
+                window.location.reload()
+            })
+        })
+    }
+
+    const uploadBanner = (files) => {
+        const formData = new FormData()
+        formData.append("file", files[0])
+        formData.append("upload_preset", "omwg8vby")
+
+        axios.post("https://api.cloudinary.com/v1_1/matheussanchez/image/upload", formData).then((res) => {
+            axios.patch("http://localhost:3001/users/" + token, {
+                background: res.data.secure_url
+            }).then(() => {
+                window.location.reload()
+            })
+        })
+    }
+
+    
 
   return (
     <div className='flex h-max flex-col bg-black items-center'>
@@ -60,23 +93,26 @@ const ProfileComponent = () => {
         ) : (
             <div className='max-w-4xl flex flex-col items-center'>
                 {token == user.id ? (
-                    <div className={`w-screen h-[250px] bg-[url("https://i.pinimg.com/originals/dd/f1/48/ddf1482dcd4dc5fc267cfa0a6c0cd720.gif")] bg-cover bg-center flex flex-col items-center justify-center`}>
-                            <img src={data.picture} className='cursor-pointer h-[200px] mt-56 rounded-full object-cover border-2 border-whitebg' />
-                            <FileBase64
-                                accept=".png, .jpg, .jpeg"
-                                name="image"
-                                id="image"
-                                multiple={ false }
-                                placeholder="Selecione"
-                                onDone={({base64}) => setImage(base64)} 
-                            />
-                    </div>
+                    <>
+                            <div 
+                                className={`w-screen h-[250px] bg-cover bg-center flex flex-col items-center justify-center`} style={{backgroundImage: `url(${data.background})`}}>
+                                    <button onClick={onButtonClick} htmlFor="Banner" className='absolute top-[5%] right-[10%] text-white font-semibold bg-primary px-12 py-2 rounded-lg hover:px-16 hover:bg-secondary transition-all duration-300'>Editar banner</button>
+                                    
+                                    <label htmlFor="File">
+                                        <img src={data.picture} className='cursor-pointer h-[200px] mt-56 rounded-full object-cover border-2 border-whitebg hover:opacity-70 transition-all duration-150' />
+                                    </label>
+                            </div>
+
+                        <input type="file" id="File" className='hidden' onChange={(e) => {uploadImage(e.target.files)}}/>
+                        
+                        <input type="file" ref={inputFile} className='hidden' onChange={(e) => {uploadBanner(e.target.files)}}/>
+                    </>
                 ):
                 (
-                    <div className={`w-screen h-[250px] bg-[url("https://i.pinimg.com/originals/dd/f1/48/ddf1482dcd4dc5fc267cfa0a6c0cd720.gif")] bg-cover bg-center flex items-center justify-center`}>
+                    <div className={`w-screen h-[250px] bg-cover bg-center flex flex-col items-center justify-center`} style={{backgroundImage: `url(${data.background})`}}>
                             <img src={data.picture} className='h-[200px] mt-56 rounded-full object-cover border-2 border-whitebg' />
                     </div>
-                )}
+                )}    
             
                 
                 <div className='flex flex-col items-center justify-center mt-24'>
@@ -127,7 +163,9 @@ const ProfileComponent = () => {
                     ) : (
                         <>
                             <h1 className='text-4xl font-bold text-whitebg'>{data.name}</h1>
-                            <h1 className='italic text-whitebg mt-2'>{data.age}y</h1>
+                            {data.age && (
+                                <h1 className='italic text-whitebg mt-2'>{data.age}y</h1>
+                            )}
                             <h1 className='italic text-whitebg'>{data.description}</h1>
                         </>
                     )}
@@ -137,6 +175,11 @@ const ProfileComponent = () => {
                             <a href={data.github} className='mt-4 w-[150px] h-[30px] hover:w-[180px] gap-2 border-2 border-whitebg bg-blackbg rounded-lg flex items-center justify-center text-whitebg font-semibold transition-all duration-300'>
                                 <BsGithub />
                                 <h1>GitHub</h1>
+                            </a>
+                        )}
+                        {data.behance && (
+                            <a href={data.behance} className='mt-4 w-[150px] h-[30px] hover:w-[180px] gap-2 border-2 border-whitebg bg-blackbg rounded-lg flex items-center justify-center text-whitebg font-semibold transition-all duration-300'>
+                                <BsBehance className='text-xl'/>
                             </a>
                         )}
                         
@@ -175,7 +218,7 @@ const ProfileComponent = () => {
                     <Experience experiences={data.experience} user={user.id} token={token}/>
                 )}
                 {show === 4 && (
-                    <Social social={data.socials}/>
+                    <Social social={data.socials} token={token} user={user.id}/>
                 )}
 
                 <div className='relative mt-52 mb-6 text-whitebg text-[12px]'>
