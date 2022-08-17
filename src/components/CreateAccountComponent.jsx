@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const CreateAccountComponent = () => {
 
   const [ modalPage, setModalPage ] = useState(1)
-  const [ career, setCareer ] = useState(null)
+  const [ career, setCareer ] = useState(2)
 
   const [ userId, setUserId ] = useState('')
   const [ name, setName ] = useState('')
@@ -34,9 +34,16 @@ const CreateAccountComponent = () => {
     })
   }
 
+  useEffect(() => {
+    const tempToken = localStorage.getItem("tempToken")
+    if(tempToken !== ''){
+      setUserId(tempToken)
+      localStorage.clear()
+    }
+  },[])
 
   return (
-    <div className='w-[900px] h-[600px] bg-blackbg rounded-2xl flex flex-col items-start px-24 justify-center gap-6'>
+    <div className='w-[900px] h-[600px] bg-blackbg rounded-2xl flex flex-col items-start px-24 justify-center gap-6 drop-shadow-xl'>
 
       {modalPage == 1 ? (
         <>
@@ -46,7 +53,7 @@ const CreateAccountComponent = () => {
           </div>
 
           <div className='flex flex-col gap-4 items-start'>
-              <input onChange={(e) => setUserId(e.target.value)} type="text" placeholder='Oxygenix.tk/seunome' className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
+              <input value={userId} onChange={(e) => setUserId(e.target.value)} type="text" placeholder='Oxygenix.tk/seunome' className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
               <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Seu nome' className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
               <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder='sua senha' className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
           </div>
@@ -63,6 +70,8 @@ const CreateAccountComponent = () => {
       ): (
         <>
           <div className='flex flex-col'>
+              <h1 className='text-whitebg text-xl font-bold opacity-80'>Olá, {name}</h1>
+              
               <h1 className='text-whitebg text-4xl font-bold'>Você é</h1>
           </div>
 
@@ -82,12 +91,14 @@ const CreateAccountComponent = () => {
 
               {career !== null ? (
                 <>
-                  <h1 className='text-whitebg text-xl font-bold'>Seu {career == 2 ? ('GitHub') : ('Behance')}:</h1>
-                  <input 
-                  value={github || behance}
-                  onChange={(e) => {
-                    career == 2 ? setGithub(e.target.value) : setBehance(e.target.value)
-                  }} type="text" className='px-12 py-2 bg-whitebg rounded-md text-blackbg font-semibold' />
+                  <div className='flex'>
+                    <input type="text" value={career == 2 ? ('GitHub.com/') : ('Behance.net/')} disabled className='bg-secondaryblack text-whitebg text-end w-[150px] rounded-l-lg px-2 font-semibold opacity-70' />
+                    <input 
+                    value={github || behance}
+                    onChange={(e) => {
+                      career == 2 ? setGithub(e.target.value) : setBehance(e.target.value)
+                    }} type="text" className='w-[150px] px-2 py-2 bg-whitebg text-blackbg bg-opacity-70 rounded-r-lg font-semibold focus:outline-none' />
+                  </div>
                 </>
               ) : (<></>)}
               

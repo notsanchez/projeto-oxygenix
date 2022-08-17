@@ -22,7 +22,7 @@ const LoginAccountComponent = () => {
     }
 
   return (
-    <div className='w-[900px] h-[600px] bg-blackbg rounded-2xl flex flex-col items-start px-24 justify-center gap-6'>
+    <div className='w-[900px] h-[600px] bg-blackbg rounded-2xl flex flex-col items-start px-24 justify-center gap-6 drop-shadow-xl'>
 
       <div className='flex flex-col'>
           <h1 className='text-whitebg text-4xl font-bold'>Entrar na sua conta</h1>

@@ -10,23 +10,23 @@ import { useParams } from "react-router-dom";
 
 const ProfileComponent = () => {
 
-    const [ error, setError ] = useState(true)
+    const [ error, setError ] = useState(false)
     const [ onChange, setOnChange ] = useState(false)
+    const [ loading, setLoading ] = useState(true)
     
     const [ show, setShow ] = useState(1)
     const [ data, setData ] = useState('')
     const [ name, setName ] = useState('')
     const [ age, setAge ] = useState('')
     const [ description, setDescription ] = useState('')
-    
 
     const user = useParams()
     const token = localStorage.getItem("token")
 
     useEffect(() => {
         axios.get('http://localhost:3001/users/' + user.id).then(res => {
-            setError(false)
             setData(res.data)
+            setLoading(false)
         }).catch(() => {
             setError(true)
         })
