@@ -17,7 +17,7 @@ const About = ({ about, token }) => {
   },[])
 
   const handleSetNewAbout = () => {
-    axios.patch('http://localhost:8000/users/' + token, {
+    axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
       about: newAbout
     }).then(() => {
       window.location.reload()

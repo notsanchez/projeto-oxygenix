@@ -20,7 +20,7 @@ const Experience = ({ experiences, user, token }) => {
 
   const handleSubmitProject = () => {
     if(experienceName && experienceDesc !== ''){
-      axios.patch('http://localhost:8000/users/' + token, {
+      axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
         experience: [
           ...experiences,
           {
@@ -51,7 +51,7 @@ const Experience = ({ experiences, user, token }) => {
                       <>
                         <button onClick={() => {
                           experiences.splice(i, 1)
-                          axios.patch('http://localhost:8000/users/' + token, {
+                          axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
                             experience: [
                               ...experiences
                             ]

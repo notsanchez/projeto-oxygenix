@@ -19,7 +19,7 @@ const HomeComponents = () => {
 
             <div className='flex gap-2'>
                 <div className='flex text-center'>
-                    <input className='bg-whitebg text-end rounded-l-lg font-semibold' value={'Oxygenix.tk/'} disabled/>
+                    <input className='bg-whitebg text-end rounded-l-lg font-semibold' value={'Oxygenix.cf/'} disabled/>
                     <input className='bg-whitebg text-start rounded-r-lg font-semibold focus:outline-none' value={name} onChange={(e) => setName(e.target.value)} placeholder='seu nome'/>
                 </div>
                 <Link to="/create" onClick={handleNewAccount} className='bg-blackbg text-whitebg font-bold px-6 py-6 rounded-full hover:px-12 transition-all duration-300'>Criar seu Oxygenix</Link>
