@@ -1,10 +1,11 @@
+require("dotenv").config();
+const cors = require('cors')
 const express = require('express')
 const app = express()
-const cors = require('cors')
-
 const mongoose = require('mongoose')
-
 const Users = require('./models/Users')
+
+const PORT = process.env.PORT || 8000
 
 app.use(express.json({limit:'10mb'}));
 app.use(express.urlencoded({limit:'10mb'}));
@@ -16,8 +17,6 @@ app.use(
     extended: true,
   }),
 )
-
-app.use(express.json())
 
 app.get('/users', async (req, res) => {
   try {
@@ -105,12 +104,12 @@ app.post('/users', async (req, res) => {
     }
   })
 
-mongoose
+  mongoose
   .connect(
-    'mongodb+srv://oxygenixadmin:admin123@cluster0.cse6fns.mongodb.net/?retryWrites=true&w=majority',
+    process.env.MONGODBKEY,
   )
   .then(() => {
     console.log('Conectou ao banco!')
-    app.listen(8000)
+    app.listen(PORT)
   })
   .catch((err) => console.log(err))
