@@ -24,7 +24,7 @@ const ProfileComponent = () => {
     const token = localStorage.getItem("token")
 
     useEffect(() => {
-        axios.get('http://localhost:3001/users/' + user.id).then(res => {
+        axios.get('http://localhost:8000/users/' + user.id).then(res => {
             setData(res.data)
             setLoading(false)
         }).catch(() => {
@@ -43,7 +43,7 @@ const ProfileComponent = () => {
     };
 
     const handleProfileChanges = () => {
-        axios.patch('http://localhost:3001/users/' + token, {
+        axios.patch('http://localhost:8000/users/' + token, {
                 name : name,
                 age: age,
                 description: description
@@ -58,7 +58,7 @@ const ProfileComponent = () => {
         formData.append("upload_preset", "omwg8vby")
 
         axios.post("https://api.cloudinary.com/v1_1/matheussanchez/image/upload", formData).then((res) => {
-            axios.patch("http://localhost:3001/users/" + token, {
+            axios.patch("http://localhost:8000/users/" + token, {
                 picture: res.data.secure_url
             }).then(() => {
                 window.location.reload()
@@ -72,7 +72,7 @@ const ProfileComponent = () => {
         formData.append("upload_preset", "omwg8vby")
 
         axios.post("https://api.cloudinary.com/v1_1/matheussanchez/image/upload", formData).then((res) => {
-            axios.patch("http://localhost:3001/users/" + token, {
+            axios.patch("http://localhost:8000/users/" + token, {
                 background: res.data.secure_url
             }).then(() => {
                 window.location.reload()
@@ -172,13 +172,13 @@ const ProfileComponent = () => {
                     
 
                         {data.github && (
-                            <a href={data.github} className='mt-4 w-[150px] h-[30px] hover:w-[180px] gap-2 border-2 border-whitebg bg-blackbg rounded-lg flex items-center justify-center text-whitebg font-semibold transition-all duration-300'>
+                            <a href={"https://github.com/" + data.github} className='mt-4 w-[150px] h-[30px] hover:w-[180px] gap-2 border-2 border-whitebg bg-blackbg rounded-lg flex items-center justify-center text-whitebg font-semibold transition-all duration-300'>
                                 <BsGithub />
                                 <h1>GitHub</h1>
                             </a>
                         )}
                         {data.behance && (
-                            <a href={data.behance} className='mt-4 w-[150px] h-[30px] hover:w-[180px] gap-2 border-2 border-whitebg bg-blackbg rounded-lg flex items-center justify-center text-whitebg font-semibold transition-all duration-300'>
+                            <a href={"https://www.behance.net/" + data.behance} className='mt-4 w-[150px] h-[30px] hover:w-[180px] gap-2 border-2 border-whitebg bg-blackbg rounded-lg flex items-center justify-center text-whitebg font-semibold transition-all duration-300'>
                                 <BsBehance className='text-xl'/>
                             </a>
                         )}

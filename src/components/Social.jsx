@@ -9,7 +9,7 @@ const Social = ({ social, token, user }) => {
 
   const handleNewSocial = () => {
     if(socialTitle && socialURL !== ''){
-      axios.patch("http://localhost:3001/users/" + token, {
+      axios.patch("http://localhost:8000/users/" + token, {
         socials: [
           ...social,
           {
@@ -36,7 +36,7 @@ const Social = ({ social, token, user }) => {
                   <a className='gap-6 w-[500px] h-[60px] bg-blackbg rounded-lg mt-6 flex items-center justify-center text-whitebg font-bold'>
                     <h1>{socials.id} <button onClick={() => {
                       social.splice(i, 1)
-                      axios.patch('http://localhost:3001/users/' + token, {
+                      axios.patch('http://localhost:8000/users/' + token, {
                         socials: [
                           ...social
                         ]

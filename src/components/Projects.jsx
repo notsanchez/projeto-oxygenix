@@ -22,7 +22,7 @@ const Projects = ({ projects, user, token }) => {
 
   const handleSubmitProject = () => {
     if(projectName && projectDesc !== ''){
-      axios.patch('http://localhost:3001/users/' + token, {
+      axios.patch('http://localhost:8000/users/' + token, {
         projects: [
           ...projects,
           {
@@ -56,7 +56,7 @@ const Projects = ({ projects, user, token }) => {
                     <>
                       <button onClick={() => {
                         projects.splice(i, 1)
-                        axios.patch('http://localhost:3001/users/' + token, {
+                        axios.patch('http://localhost:8000/users/' + token, {
                           projects: [
                             ...projects
                           ]

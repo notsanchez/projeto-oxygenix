@@ -17,7 +17,7 @@ const About = ({ about, token }) => {
   },[])
 
   const handleSetNewAbout = () => {
-    axios.patch('http://localhost:3001/users/' + token, {
+    axios.patch('http://localhost:8000/users/' + token, {
       about: newAbout
     }).then(() => {
       window.location.reload()
@@ -37,12 +37,12 @@ const About = ({ about, token }) => {
       {isLogged && (
         <>
           {onChange == true ? (
-            <button onClick={handleSetNewAbout} className='px-12 py-2 bg-secondary mt-12 rounded-full text-whitebg font-xl font-semibold'>Salvar</button>
+            <button onClick={handleSetNewAbout} className='bg-primary text-white px-12 py-2 rounded-lg mt-12 hover:px-16 hover:bg-secondary transition-all duration-300'>Salvar</button>
           ) : (
             <button onClick={() => {
               setOnChange(!onChange)
               setNewAbout(about)
-            }} className='px-12 py-2 bg-secondary mt-12 rounded-full text-whitebg font-xl font-semibold'>Editar</button>
+            }} className='bg-primary text-white px-12 py-2 rounded-lg mt-12 hover:px-16 hover:bg-secondary transition-all duration-300'>Editar</button>
           )}
         </>
       )}

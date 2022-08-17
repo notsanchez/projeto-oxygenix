@@ -14,7 +14,7 @@ const CreateAccountComponent = () => {
   const [ behance, setBehance ] = useState('')
 
   const handleAddUser = () => {
-    axios.post("http://localhost:3001/users/", {
+    axios.post("http://localhost:8000/users/", {
       id: userId,
       password: password,
       name: name,
