@@ -17,9 +17,9 @@ const Social = ({ social, token, user }) => {
             url: socialURL
           }
         ]
-      }).then(
+      }).then(() => {
         window.location.reload()
-      )
+      })
     }
   }
 
@@ -33,16 +33,21 @@ const Social = ({ social, token, user }) => {
             <>
               {social.map((socials, i) => (
                 <div key={i}>
-                  <a className='gap-6 w-[500px] h-[60px] bg-blackbg rounded-lg mt-6 flex items-center justify-center text-whitebg font-bold'>
-                    <h1>{socials.id} <button onClick={() => {
-                      social.splice(i, 1)
-                      axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
-                        socials: [
-                          ...social
-                        ]
-                      })
-                      window.location.reload()
-                    }} className='text-red-500 font-bold'>X</button></h1>
+                  <a className='w-[500px] h-[60px] bg-blackbg rounded-lg mt-6 flex flex-col items-center justify-center text-whitebg font-bold'>
+                    <div className='flex items-center justify-center'>
+                      <h1>{socials.id} <button onClick={() => {
+                        social.splice(i, 1)
+                        axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
+                          socials: [
+                            ...social
+                          ]
+                        }).then(() => {
+                          window.location.reload()
+                        })
+                      }} className='text-red-500 font-bold'>X</button>
+                      </h1>
+                    </div>
+                    <h1 className='text-[10px] opacity-50'>{socials.url}</h1>
                   </a>
                 </div>
               ))}
