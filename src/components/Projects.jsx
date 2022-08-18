@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { MdOutlineRemoveCircle } from "react-icons/md";
 
@@ -49,7 +48,7 @@ const Projects = ({ projects, user, token }) => {
             
             <div className='w-[650px] flex justify-end px-6 gap-2 items-center'>
                 
-                <Link to={project.url} className='bg-secondary py-2 px-4 rounded-full text-whitebg hover:px-12 transition-all duration-300'>Ver projeto</Link>
+                <a href={project.url} target="_blank" rel="noopener noreferrer" className='bg-secondary py-2 px-4 rounded-full text-whitebg hover:px-12 transition-all duration-300'>Ver projeto</a>
 
                 <div className='flex gap-2 items-center'>
                   {isLogged && (
