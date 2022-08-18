@@ -22,7 +22,7 @@ const ProfileComponent = () => {
 
     const user = useParams()
     const token = localStorage.getItem("token")
-
+    
     useEffect(() => {
         axios.get('https://oxygenix-api.herokuapp.com/users/' + user.id).then(res => {
             setData(res.data)
