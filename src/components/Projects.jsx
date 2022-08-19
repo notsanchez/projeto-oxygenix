@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { MdOutlineRemoveCircle } from "react-icons/md";
+import { motion } from "framer-motion"
 
 const Projects = ({ projects, user, token }) => {
 
@@ -37,7 +38,11 @@ const Projects = ({ projects, user, token }) => {
   }
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -100 }}
+    >
       {projects.length !== 0 ? (
         <>
         {projects.map((project, i) => (
@@ -69,7 +74,11 @@ const Projects = ({ projects, user, token }) => {
           </div>
         ))}
         {showNewProject && (
-          <div className='w-[750px] h-[210px] bg-secondaryblack mt-12 rounded-lg flex flex-col items-start justify-center px-8 gap-4 text-whitebg hover:text-primary transition-all duration-300'>
+          <motion.div 
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -100 }}
+            className='w-[750px] h-[210px] bg-secondaryblack mt-12 rounded-lg flex flex-col items-start justify-center px-8 gap-4 text-whitebg hover:text-primary'>
             <input
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
@@ -97,7 +106,7 @@ const Projects = ({ projects, user, token }) => {
                 <button onClick={handleSubmitProject} className='bg-primary py-2 px-4 rounded-full text-whitebg hover:px-12 transition-all duration-300'>Salvar projeto</button>
                 <button onClick={() => setShowNewProject(false)} className='text-red-500 rounded-full transition-all duration-300 font-bold text-xl'><MdOutlineRemoveCircle/></button>
             </div>
-          </div>
+          </motion.div>
         )}
         {user == token ? (
           <div className='w-full flex items-start justify-end mt-6'>
@@ -161,7 +170,7 @@ const Projects = ({ projects, user, token }) => {
         </div>
       )}
       
-    </>
+    </motion.div>
   )
 }
 

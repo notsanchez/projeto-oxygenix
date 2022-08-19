@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { motion } from "framer-motion"
 
 const About = ({ about, token }) => {
 
@@ -25,7 +26,11 @@ const About = ({ about, token }) => {
   }
 
   return (
-    <div className='flex flex-col items-center'>
+    <motion.div 
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -100 }}
+      className='flex flex-col items-center'>
       {onChange == true ? (
         <>
           <textarea cols="70" rows="8" defaultValue={about} onChange={(e) => setNewAbout(e.target.value)} className='bg-black text-whitebg mt-12 text-2xl text-center font-semibold'></textarea>
@@ -46,7 +51,7 @@ const About = ({ about, token }) => {
           )}
         </>
       )}
-    </div>
+    </motion.div>
   )
 }
 

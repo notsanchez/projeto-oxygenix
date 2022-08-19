@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { motion } from "framer-motion"
 
 const LoginAccountComponent = () => {
 
@@ -22,7 +23,11 @@ const LoginAccountComponent = () => {
     }
 
   return (
-    <div className='w-[900px] h-[600px] bg-blackbg rounded-2xl flex flex-col items-start px-24 justify-center gap-6 drop-shadow-xl'>
+    <motion.div 
+      initial={{ opacity: 0, x: 200 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 200 }}
+      className='w-[900px] h-[600px] bg-blackbg rounded-2xl flex flex-col items-start px-24 justify-center gap-6 drop-shadow-xl'>
 
       <div className='flex flex-col'>
           <h1 className='text-whitebg text-4xl font-bold'>Entrar na sua conta</h1>
@@ -53,7 +58,7 @@ const LoginAccountComponent = () => {
           <Link to="/create" className='px-12 py-2 text-[12px] bg-primary bg-opacity-40 rounded-full text-white font-semibold'>Criar sua conta</Link>
       </div>
 
-    </div>
+    </motion.div>
   )
 }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 const CreateAccountComponent = () => {
 
@@ -43,7 +44,11 @@ const CreateAccountComponent = () => {
   },[])
 
   return (
-    <div className='w-[900px] h-[600px] bg-blackbg rounded-2xl flex flex-col items-start px-24 justify-center gap-6 drop-shadow-xl'>
+    <motion.div 
+      initial={{ opacity: 0, x: -200 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -200 }}
+      className='w-[900px] h-[600px] bg-blackbg rounded-2xl flex flex-col items-start px-24 justify-center gap-6 drop-shadow-xl'>
 
       {modalPage == 1 ? (
         <>
@@ -68,7 +73,12 @@ const CreateAccountComponent = () => {
           </div>
         </>
       ): (
-        <>
+        <motion.div
+          initial={{ opacity: 0, x: -200 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -200 }}
+          className="flex flex-col gap-6"
+        >
           <div className='flex flex-col'>
               <h1 className='text-whitebg text-xl font-bold opacity-80'>Olá, {name}</h1>
               
@@ -108,11 +118,11 @@ const CreateAccountComponent = () => {
               <button onClick={handleAddUser} className='px-12 py-2 bg-primary rounded-full text-white font-semibold hover:px-20 transition-all duration-300'>Finalizar cadastro </button>
               <Link to="/login" className='px-12 py-2 text-[12px] bg-primary bg-opacity-40 rounded-full text-white font-semibold'>Entrar na sua conta</Link>
           </div>
-        </>
+        </motion.div>
       )}
     
 
-    </div>
+    </motion.div>
   )
 }
 

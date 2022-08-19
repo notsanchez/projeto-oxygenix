@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdOutlineRemoveCircle } from "react-icons/md";
+import { motion } from "framer-motion"
 
 const Experience = ({ experiences, user, token }) => {
 
@@ -35,11 +36,15 @@ const Experience = ({ experiences, user, token }) => {
   }
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -100 }}
+    >
       {experiences.length !== 0 ? (
         <>
           {experiences.map((experience, i) => (
-            <div key={i} className='w-[750px] h-[200px] bg-blackbg mt-12 rounded-lg border-whitebg border-2 flex flex-col items-start justify-center px-12 gap-2 text-whitebg hover:text-primary transition-all duration-300'>
+            <div key={i} className='w-[750px] h-[200px] bg-blackbg mt-12 rounded-lg border-whitebg border-2 flex flex-col items-start justify-center px-12 gap-2 text-whitebg hover:text-primary hover:border-primary transition-all duration-300'>
               
               <h1 className='text-xl font-semibold '>{experience.id}</h1>
               <p className='text-md text-whitebg text-opacity-75'>{experience.description}</p>
@@ -65,7 +70,11 @@ const Experience = ({ experiences, user, token }) => {
             </div>
           ))}
           {showNewProject && (
-            <div className='w-[750px] h-[210px] bg-secondaryblack mt-12 rounded-lg flex flex-col items-start justify-center px-8 gap-4 text-whitebg hover:text-primary transition-all duration-300'>
+            <motion.div 
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -100 }}
+              className='w-[750px] h-[210px] bg-secondaryblack mt-12 rounded-lg flex flex-col items-start justify-center px-8 gap-4 text-whitebg hover:text-primary'>
               <input
                 value={experienceName}
                 onChange={(e) => setExperienceName(e.target.value)}
@@ -86,7 +95,7 @@ const Experience = ({ experiences, user, token }) => {
                   <button onClick={handleSubmitProject} className='bg-primary py-2 px-4 rounded-full text-whitebg hover:px-12 transition-all duration-300'>Salvar Experiencia</button>
                   <button onClick={() => setShowNewProject(false)} className='text-red-500 rounded-full transition-all duration-300 font-bold text-xl'><MdOutlineRemoveCircle/></button>
               </div>
-            </div>
+            </motion.div>
           )}
           {user == token ? (
             <div className='w-full flex items-start justify-end mt-6'>
@@ -142,7 +151,7 @@ const Experience = ({ experiences, user, token }) => {
         </div>
       )}
       
-    </>
+    </motion.div>
   )
 }
 
