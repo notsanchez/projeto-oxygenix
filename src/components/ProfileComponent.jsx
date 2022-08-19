@@ -28,6 +28,8 @@ const ProfileComponent = () => {
     useEffect(() => {
         axios.get(process.env.REACT_APP_BASE_URL + '/users/' + user.id).then(res => {
             setData(res.data)
+            console.log(res)
+            console.log(res.data)
             setLoading(false)
         }).catch(() => {
             setError(true)
