@@ -31,7 +31,8 @@ const ProfileComponent = () => {
             console.log(res)
             console.log(res.data)
             setLoading(false)
-        }).catch(() => {
+        }).catch((err) => {
+            console.log(err)
             setError(true)
         })
     },[])
