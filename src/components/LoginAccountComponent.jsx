@@ -11,7 +11,7 @@ const LoginAccountComponent = () => {
     const [ error, setError ] = useState(false)
 
     const handleSubmitLogin = () => {
-      axios.get('https://oxygenix-api.herokuapp.com/users/' + user).then(res => {
+      axios.get(process.env.REACT_APP_BASE_URL + '/users/' + user).then(res => {
         if(res.data.password == pass){
           setError(false)
           localStorage.setItem("token", res.data.id)

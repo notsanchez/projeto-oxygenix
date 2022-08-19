@@ -26,7 +26,7 @@ const ProfileComponent = () => {
     const token = localStorage.getItem("token")
     
     useEffect(() => {
-        axios.get('https://oxygenix-api.herokuapp.com/users/' + user.id).then(res => {
+        axios.get(process.env.REACT_APP_BASE_URL + '/users/' + user.id).then(res => {
             setData(res.data)
             setLoading(false)
         }).catch(() => {
@@ -45,7 +45,7 @@ const ProfileComponent = () => {
     };
 
     const handleProfileChanges = () => {
-        axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
+        axios.patch(process.env.REACT_APP_BASE_URL + '/users/' + token, {
                 name : name,
                 age: age,
                 description: description
@@ -60,7 +60,7 @@ const ProfileComponent = () => {
         formData.append("upload_preset", "omwg8vby")
 
         axios.post("https://api.cloudinary.com/v1_1/matheussanchez/image/upload", formData).then((res) => {
-            axios.patch("https://oxygenix-api.herokuapp.com/users/" + token, {
+            axios.patch(process.env.REACT_APP_BASE_URL + '/users/' + token, {
                 picture: res.data.secure_url
             }).then(() => {
                 window.location.replace("/");
@@ -74,7 +74,7 @@ const ProfileComponent = () => {
         formData.append("upload_preset", "omwg8vby")
 
         axios.post("https://api.cloudinary.com/v1_1/matheussanchez/image/upload", formData).then((res) => {
-            axios.patch("https://oxygenix-api.herokuapp.com/users/" + token, {
+            axios.patch(process.env.REACT_APP_BASE_URL + '/users/' + token, {
                 background: res.data.secure_url
             }).then(() => {
                 window.location.replace("/");

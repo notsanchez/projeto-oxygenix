@@ -15,7 +15,7 @@ const CreateAccountComponent = () => {
   const [ behance, setBehance ] = useState('')
 
   const handleAddUser = () => {
-    axios.post("https://oxygenix-api.herokuapp.com/users/", {
+    axios.post(process.env.REACT_APP_BASE_URL + '/users/', {
       id: userId,
       password: password,
       name: name,

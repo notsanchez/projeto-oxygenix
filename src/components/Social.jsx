@@ -10,7 +10,7 @@ const Social = ({ social, token, user }) => {
 
   const handleNewSocial = () => {
     if(socialTitle && socialURL !== ''){
-      axios.patch("https://oxygenix-api.herokuapp.com/users/" + token, {
+      axios.patch(process.env.REACT_APP_BASE_URL + '/users/' + token, {
         socials: [
           ...social,
           {
@@ -42,7 +42,7 @@ const Social = ({ social, token, user }) => {
                     <div className='flex items-center justify-center'>
                       <h1>{socials.id} <button onClick={() => {
                         social.splice(i, 1)
-                        axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
+                        axios.patch(process.env.REACT_APP_BASE_URL + '/users/' + token, {
                           socials: [
                             ...social
                           ]

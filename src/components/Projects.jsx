@@ -22,7 +22,7 @@ const Projects = ({ projects, user, token }) => {
 
   const handleSubmitProject = () => {
     if(projectName && projectDesc !== ''){
-      axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
+      axios.patch(process.env.REACT_APP_BASE_URL + '/users/' + token, {
         projects: [
           ...projects,
           {
@@ -60,7 +60,7 @@ const Projects = ({ projects, user, token }) => {
                     <>
                       <button onClick={() => {
                         projects.splice(i, 1)
-                        axios.patch('https://oxygenix-api.herokuapp.com/users/' + token, {
+                        axios.patch(process.env.REACT_APP_BASE_URL + '/users/' + token, {
                           projects: [
                             ...projects
                           ]
